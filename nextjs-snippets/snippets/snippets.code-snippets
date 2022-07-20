@@ -1,0 +1,20 @@
+{
+    "Material-UI Components": {
+        "prefix": "!snackbar",
+        "body":[
+            "import Snackbar from '@material-ui/core/Snackbar';",
+            "import MuiAlert from '@material-ui/lab/Alert';",
+            "const Alert = React.forwardRef(function Alert(props, ref) {",
+            "   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;",
+            "  });",
+            "const [openSnackBar, setOpenSnackBar] = useState(false);",
+            "const [snackBarType, setSnackBarType] = useState('success');",
+            "const [alertMsg, setAlertMsg] = useState('');",
+        ]
+    },
+    "For Loop": {
+        "prefix": ["for", "for-const"],
+        "body": ["for (const ${2:element} of ${1:array}) {", "\t$0", "}"],
+        "description": "A for loop."
+      }
+}

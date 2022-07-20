@@ -1,0 +1,20 @@
+{
+    "name": "nextjs-snippets",
+    "displayName": "NextJS Snippets",
+    "description": "A collection of different nextjs functions and components",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.66.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}
