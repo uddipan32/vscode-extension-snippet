@@ -1,0 +1,96 @@
+{
+    "get request": {
+        "prefix": "get",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.get(\"${2:apiRoutes}\", authenticate, async (req: Request, res: Response) => {",
+          "    console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ===\\n Date: `, new Date(), \"\\n\");",
+          "    console.log(\"User: \", req.user.id);",
+          "    try {",
+          "      const ${3:response} = await ${4:Model}.findOne({ _id: req.user.id });",
+          "      console.log(${3:response});",
+          "      return res.json({status: 200, data: ${3:response}, msg: '' });",
+          "    } catch (err) {",
+          "      console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ERROR ===\\n`, err.message);",
+          "      res.status(500).json({status: 500, error: \"SERVER_ERROR\", msg: 'Something wet wrong' });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "Write a get request"
+    },
+    "post request": {
+        "prefix": "post",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.post(\"${2:apiRoutes}\", authenticate, async (req: Request, res: Response) => {",
+          "    console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ===\\n Date: `, new Date(), \"\\n\", req.body);",
+          "    console.log(\"User: \", req.user.id);",
+          "    const {} = req.body;",
+          "    try {",
+          "      const ${3:var} = new ${4:Model}({}); ",
+          "      const ${5:response} = await ${3:var}.save();",
+          "      console.log(${5:response});",
+          "      return res.json({status: 200, data: ${5:response}, msg: ''});",
+          "    } catch (err) {",
+          "      console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ERROR ===\\n`, err.message);",
+          "      res.status(500).json({status: 500, error: \"SERVER_ERROR\", msg: 'Something wet wrong' });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "post request"
+    },
+    "put request": {
+        "prefix": "put",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.put(\"${2:apiRoutes}\", authenticate, async (req: Request, res: Response) => {",
+          "    console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ===\\n Date: `, new Date(), \"\\n\", req.body);",
+          "    console.log(\"User: \", req.user.id);",
+          "    const {} = req.body;",
+          "    const useFields = {};",
+          "    if(${3:value}) useFields.${3:value} = ${3:value};",
+          "    try {",
+          "      const ${4:response} = await ${5:Model}.findByIdAndUpdate(id, {$$set: useFields});",
+          "      console.log(${4:response});",
+          "      return res.json({status: 200, data: ${4:response}, msg: ''});",
+          "    } catch (err) {",
+          "      console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ERROR ===\\n`, err.message);",
+          "      res.status(500).json({status: 500, error: \"SERVER_ERROR\", msg: 'Something wet wrong' });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "put request"
+    },
+    "delete request": {
+        "prefix": "delete",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.delete(\"${2:apiRoutes}/:id\", authenticate, async (req: Request, res: Response) => {",
+          "    console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ===\\n Date: `, new Date(), \"\\n\");",
+          "    console.log(\"User: \", req.user.id);",
+          "    const id = req.params;",
+          "    try {",
+          "      const ${3:response} = await ${4:Model}.findByIdAndUpdate(id, {$set: {status: \"DISABLED\"});",
+          "      console.log(${3:response});",
+          "      return res.json({status: 200, data: ${3:response}, msg: ''});",
+          "    } catch (err) {",
+          "      console.log(`=== $${ROUTER_TYPE} - ${1:apiName} ERROR ===\\n`, err.message);",
+          "      res.status(500).json({status: 500, error: \"SERVER_ERROR\", msg: 'Something wet wrong' });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "delete request"
+    },
+}
