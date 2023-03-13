@@ -1,0 +1,114 @@
+{
+    "Material-UI Components": {
+        "prefix": "!snackbar",
+        "body":[
+            "import Snackbar from '@material-ui/core/Snackbar';",
+            "import MuiAlert from '@material-ui/lab/Alert';",
+            "const Alert = React.forwardRef(function Alert(props, ref) {",
+            "   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;",
+            "  });",
+            "const [openSnackBar, setOpenSnackBar] = useState(false);",
+            "const [snackBarType, setSnackBarType] = useState('success');",
+            "const [alertMsg, setAlertMsg] = useState('');",
+        ]
+    },
+    "get request": {
+        "prefix": "get",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.get(\"${2:apiRoutes}\", requireLogin, async (req, res) => {",
+          "    console.log(\"=== ${1.apiName} ===\\n Date: \", new Date(), \"\\n\");",
+          "    console.log(\"User: \", req.user.id);",
+          "    try {",
+          "      const ${3:response} = await ${4:Model}.findOne({ _id: req.user.id });",
+          "      console.log(${3:response});",
+          "      return res.json(${3:response});",
+          "    } catch (err) {",
+          "      console.log(\"=== ${1.apiName} ERROR ===\\n\", err.message);",
+          "      res.status(500).json({ error: \"SERVER_ERROR\" });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "Write a post request"
+    },
+    "post request": {
+        "prefix": "post",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.post(\"${2:apiRoutes}\", requireLogin, async (req, res) => {",
+          "    console.log(\"=== ${1:apiName} ===\\n Date: \", new Date(), \"\\n\", req.body);",
+          "    console.log(\"User: \", req.user.id);",
+          "    const {} = req.body;",
+          "    try {",
+          "      const ${3:var} = new ${4:Model}({}); ",
+          "      const ${5:response} = await ${3:var}.save();",
+          "      console.log(${5:response});",
+          "      return res.json(${5:response});",
+          "    } catch (err) {",
+          "      console.log(\"=== ${1:apiName} ERROR ===\\n\", err.message);",
+          "      res.status(500).json({ error: \"SERVER_ERROR\" });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "post request"
+    },
+    "put request": {
+        "prefix": "put",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.put(\"${2:apiRoutes}\", requireLogin, async (req, res) => {",
+          "    console.log(\"=== ${1:apiName} ===\\n Date: \", new Date(), \"\\n\", req.body);",
+          "    console.log(\"User: \", req.user.id);",
+          "    const {} = req.body;",
+          "    const useFields = {};",
+          "    if(${3:value}) useFields.${3:value} = ${3:value};",
+          "    try {",
+          "      const ${4:response} = await ${5:Model}.findByIdAndUpdate(id, {$set: useFields});",
+          "      console.log(${4:response});",
+          "      return res.json(${4:response});",
+          "    } catch (err) {",
+          "      console.log(\"=== ${1:apiName} ERROR ===\\n\", err.message);",
+          "      res.status(500).json({ error: \"SERVER_ERROR\" });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "put request"
+    },
+    "delete request": {
+        "prefix": "delete",
+        "body": [
+          "$LINE_COMMENT ======================",
+          "$LINE_COMMENT ==== ${1:apiName} ====",
+          "$LINE_COMMENT ======================",
+          "router.delete(\"${2:apiRoutes}/:id\", requireLogin, async (req, res) => {",
+          "    console.log(\"=== ${1:apiName} ===\\n Date: \", new Date(), \"\\n\");",
+          "    console.log(\"User: \", req.user.id);",
+          "    const id = req.params;",
+          "    try {",
+          "      const ${3:response} = await ${4:Model}.findByIdAndUpdate(id, {$set: {status: \"DISABLED\"});",
+          "      console.log(${3:response});",
+          "      return res.json(${3:response});",
+          "    } catch (err) {",
+          "      console.log(\"=== ${1:apiName} ERROR ===\\n\", err.message);",
+          "      res.status(500).json({ error: \"SERVER_ERROR\" });",
+          "    }",
+          "  });",
+          ""
+        ],
+        "description": "delete request"
+    },
+    "For Loop": {
+        "prefix": ["for", "for-const"],
+        "body": ["for (const ${2:element} of ${1:array}) {", "\t$0", "}"],
+        "description": "A for loop."
+    }
+}
